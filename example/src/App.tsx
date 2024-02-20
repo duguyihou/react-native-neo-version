@@ -1,18 +1,20 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-neo-version';
+import NeoVersion from 'react-native-neo-version';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+    const func = async () => {
+      const info = await NeoVersion.getUpdateInfo();
+      console.log(`🐵 ------ info`, info);
+      return info;
+    };
+    func();
+  });
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>React Native Neo Version</Text>
     </View>
   );
 }

@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
+import type { NeoVersionApi } from './types';
 
 const LINKING_ERROR =
   `The package 'react-native-neo-version' doesn't seem to be linked. Make sure: \n\n` +
@@ -17,6 +18,4 @@ const NeoVersion = NativeModules.NeoVersion
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NeoVersion.multiply(a, b);
-}
+export default NeoVersion as NeoVersionApi;
