@@ -2,24 +2,24 @@
 public class NeoVersion: NSObject {
 
   lazy var currentVersion: String? = Bundle.version()
-  //  lazy var currentVersion: String? = "451.0.1"
+  //    lazy var currentVersion: String? = "451.0.1"
 
   private var appStoreVersion: String?
   private var appId: Int?
   private var alertPresentationDate: Date?
 
   @objc
-  func getVersionInfo(_ countryCode: String,
-                      resolve: @escaping RCTPromiseResolveBlock,
-                      reject: @escaping RCTPromiseRejectBlock) {
-    alertPresentationDate = UserDefaults.alertPresentationDate ?? Date()
-    Task(priority: .userInitiated, operation: {
-      guard let updateType = await performVersionCheck(countryCode) else {
-        return
-      }
-      resolve(updateType.rawValue)
-    })
-  }
+  func getVersionInfo(
+    _ resolve: @escaping RCTPromiseResolveBlock,
+    reject: @escaping RCTPromiseRejectBlock) {
+      alertPresentationDate = UserDefaults.alertPresentationDate ?? Date()
+      Task(priority: .userInitiated, operation: {
+        guard let updateType = await performVersionCheck() else {
+          return
+        }
+        resolve(updateType.rawValue)
+      })
+    }
 
   @objc
   func skipThisVersion() {
@@ -61,9 +61,9 @@ public class NeoVersion: NSObject {
 
 extension NeoVersion {
 
-  private func performVersionCheck(_ countryCode: String?) async -> UpdateType? {
+  private func performVersionCheck() async -> UpdateType? {
     do {
-      let response = try await RequestManager(countryCode).performVersionCheck()
+      let response = try await RequestManager().performVersionCheck()
       guard let updateType = await parse(response) else { return nil }
       return updateType
     } catch {

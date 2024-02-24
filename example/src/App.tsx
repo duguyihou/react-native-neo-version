@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import useNeoVersionCheck from '../../src/useNeoVersionCheck';
+import { useNeoVersionCheck } from '../../src';
 
 export default function App() {
   useNeoVersionCheck();
