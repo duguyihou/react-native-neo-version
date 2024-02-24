@@ -1,17 +1,10 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import NeoVersion from 'react-native-neo-version';
+import useNeoVersionCheck from '../../src/useNeoVersionCheck';
 
 export default function App() {
-  React.useEffect(() => {
-    const func = async () => {
-      const info = await NeoVersion.getUpdateInfo();
-      console.log(`🐵 ------ info`, info);
-      return info;
-    };
-    func();
-  });
+  useNeoVersionCheck();
   return (
     <View style={styles.container}>
       <Text>React Native Neo Version</Text>
