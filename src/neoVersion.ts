@@ -1,13 +1,22 @@
 import { NativeModules } from 'react-native';
-import type { NeoVersionApi } from './types';
+import type { UpdateType } from './types';
 
 const neoVersion = NativeModules.NeoVersion;
 
-export const getVersionInfo = neoVersion.getVersionInfo;
-export const computeDaysSincePresentation =
-  neoVersion.computeDaysSincePresentation;
-export const skipThisVersion = neoVersion.skipThisVersion;
-export const launchAppStore = neoVersion.launchAppStore;
-export const presentNextTime = neoVersion.presentNextTime;
+export function getVersionInfo(): Promise<UpdateType | undefined> {
+  return neoVersion.getVersionInfo();
+}
+export function computeDaysSincePresentation(): Promise<number | undefined> {
+  return neoVersion.computeDaysSincePresentation();
+}
+export function skipThisVersion(): void {
+  return neoVersion.skipThisVersion();
+}
+export function launchAppStore(): void {
+  return neoVersion.launchAppStore();
+}
+export function presentNextTime(day: number): void {
+  return neoVersion.presentNextTime(day);
+}
 
-export default neoVersion as NeoVersionApi;
+export default neoVersion;
