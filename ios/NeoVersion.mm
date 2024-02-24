@@ -3,8 +3,7 @@
 @interface RCT_EXTERN_MODULE(NeoVersion, NSObject)
 
 RCT_EXTERN_METHOD(getVersionInfo:
-                  (NSString*)countryCode
-                  resolve:(RCTPromiseResolveBlock)resolve
+                  (RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(computeDaysSincePresentation:
                   (RCTPromiseResolveBlock)resolve

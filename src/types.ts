@@ -26,7 +26,7 @@ export type Rules = {
 };
 
 export type NeoVersionApi = {
-  getVersionInfo: (countryCode: string) => Promise<UpdateType | undefined>;
+  getVersionInfo: () => Promise<UpdateType | undefined>;
   computeDaysSincePresentation: () => Promise<number | undefined>;
   skipThisVersion: () => void;
   launchAppStore: () => void;

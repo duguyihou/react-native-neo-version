@@ -9,15 +9,12 @@ type Configuration = {
   message: string;
   alertType: AlertType;
   frequency: number;
-  countryCode: string;
 };
 
 const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
   useEffect(() => {
-    const func = async () => {
-      const updateType = await NeoVersion.getVersionInfo(
-        configuration?.countryCode ?? 'AU'
-      );
+    const performVersionCheck = async () => {
+      const updateType = await NeoVersion.getVersionInfo();
       if (!updateType) return;
 
       const daysSincePresentation =
@@ -36,10 +33,9 @@ const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
         );
       }
     };
-    func();
+    performVersionCheck();
   }, [
     configuration?.alertType,
-    configuration?.countryCode,
     configuration?.frequency,
     configuration?.message,
     configuration?.title,

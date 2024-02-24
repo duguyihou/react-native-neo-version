@@ -8,24 +8,24 @@ struct RequestManager {
   }
 
   let bundleID: String?
-  let country: Country
   let language: String?
 
-  init(country: Country = .unitedStates,
-       language: String? = nil,
+  var countryCode: String? {
+    if #available(iOS 16, *) {
+      return Locale.current.region?.identifier
+    } else {
+      return Locale.current.regionCode
+    }
+  }
+
+  init(language: String? = nil,
        bundleID: String? = Bundle.main.bundleIdentifier) {
-    self.country = country
     self.language = language
     self.bundleID = bundleID
   }
-
-  static let shared = RequestManager()
 }
 
 extension RequestManager {
-  init(_ countryCode: String?) {
-    self.init(country: .init(code: countryCode))
-  }
 
   func performVersionCheck() async throws -> Response {
     guard bundleID != nil else {
@@ -34,7 +34,7 @@ extension RequestManager {
 
     do {
       let url = try composeURL()
-      //      let url = URL(string: "https://itunes.apple.com/lookup?bundleId=com.facebook.Facebook&country=AU")
+//            let url = URL(string: "https://itunes.apple.com/lookup?bundleId=com.facebook.Facebook&country=AU")
       let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
       let (data, _) = try await URLSession.shared.data(for: request)
       return try check(data)
@@ -51,7 +51,7 @@ extension RequestManager {
 
     var items: [URLQueryItem] = [URLQueryItem(name: Constants.bundleID, value: bundleID)]
 
-    if let countryCode = country.code {
+    if let countryCode = countryCode {
       let item = URLQueryItem(name: Constants.country, value: countryCode)
       items.append(item)
     }
