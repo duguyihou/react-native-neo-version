@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
-import NeoVersion from '.';
 import type { AlertType } from './types';
 import { generateAlertButtons, parse, shouldPresentAlert } from './rules';
+import { computeDaysSincePresentation, getVersionInfo } from './neoVersion';
 
 type Configuration = {
   title: string;
@@ -11,14 +11,13 @@ type Configuration = {
   frequency: number;
 };
 
-const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
+export const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
   useEffect(() => {
     const performVersionCheck = async () => {
-      const updateType = await NeoVersion.getVersionInfo();
+      const updateType = await getVersionInfo();
       if (!updateType) return;
 
-      const daysSincePresentation =
-        await NeoVersion.computeDaysSincePresentation();
+      const daysSincePresentation = await computeDaysSincePresentation();
 
       const { frequency, alertType } = parse(updateType);
       const freq = configuration?.frequency ?? frequency;
@@ -41,5 +40,3 @@ const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
     configuration?.title,
   ]);
 };
-
-export default useNeoVersionCheck;
