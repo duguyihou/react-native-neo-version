@@ -2,7 +2,6 @@ buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
   def kotlin_version = rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : project.properties["NeoVersion_kotlinVersion"]
   ext {
-    ktor_version = "2.3.8"
     app_update_ktx = "2.1.0"
   }
   repositories {
@@ -93,7 +92,6 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation("io.ktor:ktor-client-core:$ktor_version")
   implementation("com.google.android.play:app-update-ktx:$app_update_ktx")
 }
 
