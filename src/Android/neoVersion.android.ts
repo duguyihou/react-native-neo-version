@@ -12,7 +12,8 @@ export function getVersionInfo(): Promise<Partial<VersionInfo>> {
 }
 
 export function startUpdate(): Promise<void> {
-  return neoVersion.startUpdate();
+  // flexible update by default
+  return neoVersion.startUpdate(0);
 }
 
 export default neoVersion;
