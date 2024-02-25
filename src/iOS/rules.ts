@@ -1,6 +1,6 @@
 import type { AlertButton } from 'react-native';
 import { nextTimeButton, skipButton, updateButton } from './alertButton';
-import { type AlertType, type UpdateType, type Rules } from './types';
+import { type AlertType, type UpdateType, type Rules } from '../types';
 
 const criticalRules: Rules = {
   alertType: 'force',

@@ -13,3 +13,10 @@ export type Rules = {
   alertType: AlertType;
   frequency: FrequencyVal | number;
 };
+
+export type Configuration = {
+  title: string;
+  message: string;
+  alertType: AlertType;
+  frequency: number;
+};
