@@ -77,6 +77,7 @@ android {
     namespace "com.neoversionexample"
     defaultConfig {
         applicationId "com.neoversionexample"
+        // applicationId "com.facebook.katana" 
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

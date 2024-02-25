@@ -1,5 +1,9 @@
 import type { AlertButton } from 'react-native';
-import { launchAppStore, presentNextTime, skipThisVersion } from './neoVersion';
+import {
+  launchAppStore,
+  presentNextTime,
+  skipThisVersion,
+} from './neoVersion.ios';
 
 export const updateButton = (): AlertButton => {
   return {
