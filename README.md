@@ -43,9 +43,9 @@ useNeoVersionCheck({
 ## Screenshots
 
 ### iOS
-- The left picture forces the user to update the app.
-- The center picture gives the user the option to update the app.
-- The right picture gives the user the option to skip the current update.
+- The first picture forces the user to update the app.
+- The second picture gives the user the option to update the app.
+- The third picture gives the user the option to skip the current update.
 
 <img src="https://github.com/duguyihou/react-native-neo-version/assets/9347790/787e73fc-905f-4b02-b865-adb8c01bf231" width="330" height="680" />
 <img src="https://github.com/duguyihou/react-native-neo-version/assets/9347790/b23e70a9-7cd2-4200-b505-fe753844f433" width="330" height="680" />
