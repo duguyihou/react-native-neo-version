@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
-import { getVersionInfo, startUpdate } from './neoVersion.android';
+import {
+  getVersionInfo,
+  presentNextTime,
+  startUpdate,
+} from './neoVersion.android';
 import { Alert } from 'react-native';
 import type { Configuration } from '../types';
 
 export const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
   useEffect(() => {
     const performVersionCheck = async () => {
-      const info = await getVersionInfo();
-      if (info.isUpdateAvailable) {
+      const isUpdateAvailable = await getVersionInfo();
+      if (isUpdateAvailable) {
         Alert.alert(
           configuration?.title ?? 'Update Available',
           configuration?.message ??
@@ -22,6 +26,9 @@ export const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
             },
             {
               text: 'Next time',
+              onPress: () => {
+                presentNextTime(configuration?.frequency ?? 7);
+              },
               style: 'default',
             },
           ]
@@ -29,5 +36,5 @@ export const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
       }
     };
     performVersionCheck();
-  }, [configuration?.message, configuration?.title]);
+  }, [configuration?.frequency, configuration?.message, configuration?.title]);
 };
