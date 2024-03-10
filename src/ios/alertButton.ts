@@ -1,23 +1,11 @@
 import type { AlertButton } from 'react-native';
-import {
-  startUpdate,
-  presentNextTime,
-  skipThisVersion,
-} from './neoVersion.android';
+import { launchAppStore, presentNextTime, skipThisVersion } from './neoVersion';
 
-export const UpdateTypeMap = {
-  flexible: 0,
-  immediate: 1,
-} as const;
-
-export type UpdateTypeKey = keyof typeof UpdateTypeMap;
-export type UpdateTypeVal = (typeof UpdateTypeMap)[UpdateTypeKey];
-
-export const updateButton = (updateType: UpdateTypeKey): AlertButton => {
+export const updateButton = (): AlertButton => {
   return {
     text: 'Update',
     onPress: () => {
-      startUpdate(updateType);
+      launchAppStore();
     },
     style: 'default',
   };

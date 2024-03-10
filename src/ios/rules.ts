@@ -1,5 +1,5 @@
 import type { AlertButton } from 'react-native';
-import { nextTimeButton, skipButton, updateButton } from './alertButton.ios';
+import { nextTimeButton, skipButton, updateButton } from './alertButton';
 import { type AlertType } from '../types';
 
 export type UpdateType = 'major' | 'minor' | 'patch' | 'unknown';

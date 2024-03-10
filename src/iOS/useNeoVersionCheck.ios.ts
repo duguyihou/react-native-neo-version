@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
 import type { Configuration } from '../types';
-import { generateAlertButtons, parse, shouldPresentAlert } from './rules.ios';
-import { computeDaysSincePresentation, getVersionInfo } from './neoVersion.ios';
+import { generateAlertButtons, parse, shouldPresentAlert } from './rules';
+import { computeDaysSincePresentation, getVersionInfo } from './neoVersion';
 
 export const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
   useEffect(() => {

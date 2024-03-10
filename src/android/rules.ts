@@ -1,9 +1,5 @@
 import type { AlertButton } from 'react-native';
-import {
-  nextTimeButton,
-  skipButton,
-  updateButton,
-} from './alertButton.android';
+import { nextTimeButton, skipButton, updateButton } from './alertButton';
 import type { AlertType } from '../types';
 
 export const generateAlertButtons = (

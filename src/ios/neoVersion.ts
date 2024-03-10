@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native';
-import type { UpdateType } from './rules.ios';
+import type { UpdateType } from './rules';
 
 const neoVersion = NativeModules.NeoVersion;
 

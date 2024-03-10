@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native';
-import { UpdateTypeMap, type UpdateTypeKey } from './alertButton.android';
+import { UpdateTypeMap, type UpdateTypeKey } from './alertButton';
 
 const neoVersion = NativeModules.NeoVersion;
 
