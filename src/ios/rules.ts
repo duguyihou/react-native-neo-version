@@ -1,6 +1,14 @@
 import type { AlertButton } from 'react-native';
 import { nextTimeButton, skipButton, updateButton } from './alertButton';
-import { type AlertType, type UpdateType, type Rules } from '../types';
+import { type AlertType } from '../types';
+
+export type UpdateType = 'major' | 'minor' | 'patch' | 'unknown';
+export type Frequency = 0 | 1 | 7;
+
+export type Rules = {
+  alertType: AlertType;
+  frequency: Frequency | number;
+};
 
 const criticalRules: Rules = {
   alertType: 'force',

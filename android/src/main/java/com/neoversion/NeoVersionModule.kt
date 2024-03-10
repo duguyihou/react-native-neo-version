@@ -18,6 +18,8 @@ class NeoVersionModule(reactContext: ReactApplicationContext) :
 
   private val appUpdateManager = AppUpdateManagerFactory.create(reactContext)
   private val neoPreference = NeoPreference(reactContext)
+  private var skippedVersionCode = neoPreference.getSkippedVersion()
+  private var versionCode: Int? = null
 
   @ReactMethod
   fun getVersionInfo(promise: Promise) {
@@ -27,16 +29,18 @@ class NeoVersionModule(reactContext: ReactApplicationContext) :
       promise.reject("ERROR", err.toString())
     }
     appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-      val storedStalenessDays = neoPreference.getValueInt("storedStalenessDays")
+      val storedStalenessDays = neoPreference.getStalenessDays()
+      versionCode = appUpdateInfo.availableVersionCode()
       val updateAvailability = appUpdateInfo.updateAvailability()
       val stalenessDays = appUpdateInfo.clientVersionStalenessDays() ?: 0
-      val isUpdateAvailable = updateAvailability == UpdateAvailability.UPDATE_AVAILABLE && stalenessDays > storedStalenessDays
+      val isUpdateAvailable =
+        updateAvailability == UpdateAvailability.UPDATE_AVAILABLE && stalenessDays > storedStalenessDays && versionCode!! > skippedVersionCode
       promise.resolve(isUpdateAvailable)
     }
   }
 
   @ReactMethod
-  fun startUpdate(updateType: Int = 0, promise: Promise) {
+  fun startUpdate(updateType: Int, promise: Promise) {
     val appUpdateInfoTask = appUpdateManager.appUpdateInfo
     appUpdateInfoTask.addOnFailureListener { err: Exception ->
       promise.reject("ERROR", err.toString())
@@ -61,7 +65,12 @@ class NeoVersionModule(reactContext: ReactApplicationContext) :
 
   @ReactMethod
   fun presentNextTime(day: Int) {
-    neoPreference.save("storedStalenessDays", day)
+    neoPreference.saveStalenessDays(day)
+  }
+
+  @ReactMethod
+  fun skipThisVersion() {
+    versionCode?.let { neoPreference.saveSkippedVersion(it) }
   }
 
   companion object {

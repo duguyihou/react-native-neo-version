@@ -1,1 +1,1 @@
-export { useNeoVersionCheck } from './iOS/useNeoVersionCheck.ios';
+export { useNeoVersionCheck } from './ios/useNeoVersionCheck';
