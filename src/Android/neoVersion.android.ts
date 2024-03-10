@@ -1,4 +1,5 @@
 import { NativeModules } from 'react-native';
+import { UpdateTypeMap, type UpdateTypeKey } from './alertButton.android';
 
 const neoVersion = NativeModules.NeoVersion;
 
@@ -6,9 +7,12 @@ export function getVersionInfo(): Promise<boolean> {
   return neoVersion.getVersionInfo();
 }
 
-export async function startUpdate(): Promise<void> {
-  // flexible update by default
-  return await neoVersion.startUpdate(0);
+// flexible update by default
+export async function startUpdate(
+  updateType: UpdateTypeKey = 'flexible'
+): Promise<void> {
+  const type = UpdateTypeMap[updateType];
+  return await neoVersion.startUpdate(type);
 }
 
 export async function presentNextTime(day: number) {
