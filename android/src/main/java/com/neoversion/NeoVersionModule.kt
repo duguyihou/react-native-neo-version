@@ -40,7 +40,7 @@ class NeoVersionModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun startUpdate(updateType: Int = 0, promise: Promise) {
+  fun startUpdate(updateType: Int, promise: Promise) {
     val appUpdateInfoTask = appUpdateManager.appUpdateInfo
     appUpdateInfoTask.addOnFailureListener { err: Exception ->
       promise.reject("ERROR", err.toString())
