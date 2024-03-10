@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import {
   getVersionInfo,
   presentNextTime,
+  skipThisVersion,
   startUpdate,
 } from './neoVersion.android';
 import { Alert } from 'react-native';
@@ -21,6 +22,13 @@ export const useNeoVersionCheck = (configuration?: Partial<Configuration>) => {
               text: 'Update',
               onPress: () => {
                 startUpdate();
+              },
+              style: 'default',
+            },
+            {
+              text: 'Skip this version',
+              onPress: () => {
+                skipThisVersion();
               },
               style: 'default',
             },

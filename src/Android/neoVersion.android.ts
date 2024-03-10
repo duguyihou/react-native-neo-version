@@ -6,13 +6,17 @@ export function getVersionInfo(): Promise<boolean> {
   return neoVersion.getVersionInfo();
 }
 
-export function startUpdate(): Promise<void> {
+export async function startUpdate(): Promise<void> {
   // flexible update by default
-  return neoVersion.startUpdate(0);
+  return await neoVersion.startUpdate(0);
 }
 
-export function presentNextTime(day: number) {
-  return neoVersion.presentNextTime(day);
+export async function presentNextTime(day: number) {
+  return await neoVersion.presentNextTime(day);
+}
+
+export async function skipThisVersion(): Promise<void> {
+  return await neoVersion.skipThisVersion();
 }
 
 export default neoVersion;
