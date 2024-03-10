@@ -1,6 +1,6 @@
 {
   "name": "react-native-neo-version",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Check the version for react native applications",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
