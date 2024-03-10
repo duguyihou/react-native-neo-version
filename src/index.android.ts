@@ -1,1 +1,1 @@
-export { useNeoVersionCheck } from './android/useNeoVersionCheck.android';
+export { useNeoVersionCheck } from './Android/useNeoVersionCheck.android';
